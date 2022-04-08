@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap {
+      width: 100vw;
+      height: 100vh;
+      background-color: antiquewhite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .demo{
+      width: 100px;
+      height: 100px;
+      background-color: aquamarine;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <h1>Border Radius</h1>
+    <div class="demo"></div>
+    <div class="control">
+      <div>
+        <label for="top-left-rx">top-left-rx</label>
+        <input type="range" id="top-left-rx" name="top-left-rx"  min="0" max="100">
+      </div>
+      <div>
+        <label for="top-right-rx">top-right-rx</label>
+        <input type="range" id="top-right-rx" name="top-right-rx"  min="0" max="100">
+      </div>
+      <div>
+        <label for="top-left-ry">top-left-ry</label>
+        <input type="range" id="top-left-ry" name="top-left-ry"  min="0" max="100">
+      </div>
+      <div>
+        <label for="top-right-ry">top-right-ry</label>
+        <input type="range" id="top-right-ry" name="top-right-ry"  min="0" max="100">
+      </div>
+      <div>
+        <label for="bottom-left-rx">bottom-left-rx</label>
+        <input type="range" id="bottom-left-rx" name="bottom-left-rx"  min="0" max="100">
+      </div>
+      <div>
+        <label for="bottom-right-rx">bottom-right-rx</label>
+        <input type="range" id="bottom-right-rx" name="bottom-right-rx"  min="0" max="100">
+      </div>
+      <div>
+        <label for="bottom-left-ry">bottom-left-ry</label>
+        <input type="range" id="bottom-left-ry" name="bottom-left-ry"  min="0" max="100">
+      </div>
+      <div>
+        <label for="bottom-right-ry">bottom-right-ry</label>
+        <input type="range" id="bottom-right-ry" name="bottom-right-ry"  min="0" max="100">
+      </div>
+
+    </div>
+    <div class="value">
+      <span class="radius"></span>
+      <button onclick="copy()">copy value</button>
+    </div>
+  </div>
+  <script>
+    const demo = document.querySelector('.demo');
+    const radius = document.querySelector('.radius');
+    const topLeftX = document.querySelector('#top-left-rx')
+    const topRightX = document.querySelector('#top-right-rx')
+    const bottomLeftX = document.querySelector('#bottom-left-rx')
+    const bottomRightX = document.querySelector('#bottom-right-rx')
+    const topLefty = document.querySelector('#top-left-ry')
+    const topRighty = document.querySelector('#top-right-ry')
+    const bottomLefty = document.querySelector('#bottom-left-ry')
+    const bottomRighty = document.querySelector('#bottom-right-ry')
+
+    topLeftX.addEventListener('input', (e) => {
+      let style=`border-radius: ${e.target.value}% ${topRightX.value}% ${bottomRightX.value}% ${bottomLeftX.value}% / ${topLefty.value}% ${topRighty.value}% ${bottomRighty.value}% ${bottomLefty.value}%`
+      demo.style = style
+      radius.innerText = style
+    });
+
+
+    let style = `border-radius: ${topLeftX.value}% ${topRightX.value}% ${bottomRightX.value}% ${bottomLeftX.value}% / ${topLefty.value}% ${topRighty.value}% ${bottomRighty.value}% ${bottomLefty.value}%`
+    console.log(style);
+    demo.style = style
+    radius.innerText = style
+    
+    function copy() {
+      console.log(demo.style.borderRadius)
+      navigator.clipboard.writeText(`border-radius: ${demo.style.borderRadius};`);
+    }
+  </script>
+</body>
+</html>
