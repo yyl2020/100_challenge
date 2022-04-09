@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=""></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <style>
+        #result {
+            width: 234px;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid saddlebrown;
+            display: flex;
+            font-size: 32px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .col {
+            padding: 4px;
+        }
+        .col button {
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="result">0</div>
+        <div class="col">
+            <button >null</button>
+            <button onclick="clearAll()">CE</button>
+            <button onclick="clearNum()">C</button>
+            <button onclick="deleteOne()"><-</button>
+        </div>
+        <div class="col">
+            <button onclick="enterNumber(7)">7</button>
+            <button onclick="enterNumber(8)">8</button>
+            <button onclick="enterNumber(9)">9</button>
+            <button onclick="triggerAction('+')">+</button>
+        </div>
+        <div class="col">
+            <button onclick="enterNumber(4)">4</button>
+            <button onclick="enterNumber(5)">5</button>
+            <button onclick="enterNumber(6)">6</button>
+            <button onclick="triggerAction('-')">-</button>
+        </div>
+        <div class="col">
+            <button onclick="enterNumber(1)">1</button>
+            <button onclick="enterNumber(2)">2</button>
+            <button onclick="enterNumber(3)">3</button>
+            <button onclick="triggerAction('*')">*</button>
+        </div>
+        <div class="col">
+            <button onclick="enterNumber(0)">0</button>
+            <button onclick="triggerAction('.')">.</button>
+            <button onclick="equal()">=</button>
+            <button onclick="triggerAction('/')">/</button>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
