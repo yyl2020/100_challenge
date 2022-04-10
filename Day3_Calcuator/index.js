@@ -7,27 +7,18 @@ function enterNumber(number) {
   result.innerText = Number(currentValue);
 }
 function triggerAction(action) {
-    switch (action) {
-        case "+":
-        case "-":
-        case "*":
-        case "/":
-            saveState(action);
-            currentValue = 0
-            break;
-    }
+    saveState(action);
+    currentValue = 0
 }
 
 function clearNum(){
-    console.log(1111);
     currentValue = 0;
     result.innerText = 0;
 }
 function clearAll(){
-    currentValue = 0;
     prevValue = 0;
     prevAction = "";
-    result.innerText = 0;
+    clearNum()
 }
 function equal () {
     if (prevAction === "+") {
@@ -46,6 +37,5 @@ function saveState (action) {
 }
 function deleteOne(){
     currentValue = result.innerText.slice(0, -1);
-    console.log(currentValue);
     result.innerText = Number(currentValue);
 }
