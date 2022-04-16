@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../reset.css">
+  <title>Document</title>
+  <style>
+    .wrap{
+      display: flex;
+      flex-direction: row;
+    }
+    #sidebar{
+      width: 200px;
+      height: 200px;
+      padding: 20px;
+    }
+    #content{
+      width: 200px;
+      height: 300px;
+      border: 1px solid skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav id="sidebar">
+    </nav>
+    <main id="content">
+      <div>index</div>
+    </main>
+  </div>
+  <script>
+    const people = [
+      {name: "tt", street: "大街", city: "杭州", state: "2222", country: "China", telephone: "1235", birthday: "1998.01.01"},
+      {name: "yy", street: "大街", city: "杭州", state: "2222", country: "China", telephone: "1235", birthday: "1998.01.01"},
+      {name: "jj", street: "大街", city: "杭州", state: "2222", country: "China", telephone: "1235", birthday: "1998.01.01"},
+      {name: "uu", street: "大街", city: "杭州", state: "2222", country: "China", telephone: "1235", birthday: "1998.01.01"},
+    ]
+    const peopleList = document.querySelector("#sidebar")
+    const content = document.querySelector("#content")
+    let activeName = 'tt'
+    window.addEventListener('hashchange', e => {
+      e.preventDefault();
+      activeName = window.location.hash && window.location.hash.slice(2)
+      createContent(activeName)
+    })
+
+    function init(){
+      createSidebar()
+      createContent()
+    }
+    init()
+
+    function createSidebar (){
+      const ul = document.createElement("ul")
+      peopleList.appendChild(ul)
+      people.forEach(person => {
+        const li = document.createElement("li")
+        const a = document.createElement("a")
+        a.innerText = person.name
+        a.href = "#/" + person.name
+        li.appendChild(a)
+        ul.appendChild(li)
+      })
+    }
+    
+    function createContent(activeName){
+      let innerHTML = ''
+      const activePeople = people.find(person => person.name === activeName)
+      if(!activePeople) return
+      Object.keys(activePeople).forEach(key => {
+        innerHTML += `<div>${key}: ${activePeople[key]}</div>`
+      })
+      content.innerHTML = innerHTML
+    }
+
+  </script>
+</body>
+</html>

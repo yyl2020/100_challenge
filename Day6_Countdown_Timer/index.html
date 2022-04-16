@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../reset.css">
+  <style>
+    #content{
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Countdown Timer</h1>
+    <div id="content"></div>
+  </div>
+  <script>
+    const content = document.getElementById('content')
+    const date = new Date('2022-11-19T00:00:00')
+    const timer = setInterval(() => {
+      const now = new Date()
+      const diff = date - now
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+      content.innerHTML = `
+        <p>距离2022.11.19号还有：</p>
+        <span>${days}</span>天
+        <span>${hours}</span>小时
+        <span>${minutes}</span>分
+        <span>${seconds}</span>秒`
+    }, 1000)
+  </script>
+</body>
+</html>
