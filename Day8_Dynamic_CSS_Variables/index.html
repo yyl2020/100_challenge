@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../reset.css">
+  <style>
+    :root{
+      --main-color: #bfec56;
+      --main-font-size: 20px;
+      --main-font-color: #000;
+    }
+    #control{
+      margin-top: 20px;
+    }
+    #content{
+      margin-top: 20px;
+      width: 100px;
+      height: 100px;
+      background-color: var(--main-color);
+      color: var(--main-font-color);
+      font-size: var(--main-font-size);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Dynamic CSS Variables</h1>
+    <div id="control">
+      <label for="main-color">Main Color:</label>
+      <input type="color" id="main-color" value="#bfec56" onchange="handleChange(event, '--main-color')">
+      <label for="main-font-size">Main Font Size:</label>
+      <input type="range" id="main-font-size" min="10" max="50" value="20" onchange="handleChange(event, '--main-font-size', 'px')">
+      <label for="main-font-color">Main Font Color:</label>
+      <input type="color" id="main-font-color" value="#000" onchange="handleChange(event, '--main-font-color')">
+    </div>
+    <div id="content">
+      测试字体
+    </div>
+  </div>
+
+  <script>
+    const root = document.documentElement
+    function handleChange(e, key, unit) {
+      console.log(e.target.value, key);
+      root.style.setProperty(key, e.target.value + (unit || ''))
+    }
+  </script>
+</body>
+</html>
