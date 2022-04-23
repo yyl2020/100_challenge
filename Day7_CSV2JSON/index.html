@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <style>
+        textarea{
+            width: 1000px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <button>Upload File</button>
+        <textarea name="CSV" id="CSVContent" cols="30" rows="10"></textarea>
+        <button id="toJSON">toJSON</button>
+        <textarea name="JSON" id="JSONContent" cols="30" rows="10"></textarea>
+        <button>Save File</button>
+        <button>Copy</button>
+    </div>
+    <script>
+        const CSVContent = document.getElementById('CSVContent')
+        const JSONContent = document.getElementById('JSONContent')
+        const toJSONBtn = document.getElementById('toJSON')
+
+        function parseCSV2JSON(CSVContent){
+            // parse CSV2Array
+            const CSV2Array = CSVContent.split('\n')
+            const CSVItemsKeys = CSV2Array[0].split(',')
+
+            // parse CSV2JSON 
+            const res = CSV2Array.slice(1).map(item => {
+                const itemArray = item.split(',')
+                const itemObj = {}
+                CSVItemsKeys.forEach((key, index) => {
+                    itemObj[key] = itemArray[index]
+                })
+                return itemObj
+                console.log(itemObj)
+            })
+            return res
+        }
+        function toJSON(){
+            const res = parseCSV2JSON(CSVContent.value)
+            const json = JSON.stringify(res)
+            JSONContent.value = json.replace(/},/g, "},\r\n");
+        }
+        toJSONBtn.addEventListener('click', toJSON)
+    </script>
+</body>
+</html>
